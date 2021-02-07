@@ -31,6 +31,8 @@ from tobrot.helper_funcs.youtube_dl_extractor import extract_youtube_dl_formats
 from tobrot.helper_funcs.admin_check import AdminCheck
 from tobrot.helper_funcs.ytplaylist import yt_playlist_downg
 from tobrot.helper_funcs.cloneHelper import CloneHelper
+from tobrot.helper_funcs.download import download_tg
+from tobrot.helper_funcs.upload_to_tg import upload_to_tg
 
 async def incoming_purge_message_f(client, message):
     """/purge command"""
@@ -97,7 +99,7 @@ async def incoming_message_f(client, message):
             await i_m_sefg.edit_text(err_message)
     else:
         await i_m_sefg.edit_text(
-            "**Sorry Sir.**\n What you have entered? I can't understand properly. \nPlease send `/help` \n\n@AbirHasan2005 Please help him!\n "
+            "**Sorry.**\n What you have entered? I can't understand properly. \n\n "
             f"<b>API Error</b>: {cf_name}"
         )
 #
@@ -152,7 +154,7 @@ async def incoming_gdrive_message_f(client, message):
         )
     else:
         await i_m_sefg.edit_text(
-            "**Sorry Sir.**\n What you have entered? I can't understand properly. \nPlease send `/help` \n\n@AbirHasan2005 Please help him!\n "
+            "**Sorry.**\n What you have entered? I can't understand properly. \n\n "
             f"<b>API Error</b>: {cf_name}"
         )
 
@@ -207,7 +209,7 @@ async def incoming_youtube_dl_f(client, message):
             )
     else:
         await i_m_sefg.edit_text(
-            "**Sorry Sir.**\n What you have entered? I can't understand properly. \nPlease send `/help` \n\n@AbirHasan2005 Please help him!\n "
+            "**Sorry.**\n What you have entered? I can't understand properly. \n\n "
             f"<b>API Error</b>: {cf_name}"
         )
 #playlist
@@ -240,4 +242,4 @@ async def g_clonee(client, message):
         await gclone.gcl()
         await gclone.link_gen_size()
     else:
-        await message.reply_text("You should reply to a message, which format should be [ID of Gdrive file/folder Name of the file/folder]\nOr read Github for detailled information")
+        await message.reply_text("You should reply to a message,\n")
