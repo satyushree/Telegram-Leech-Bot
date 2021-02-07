@@ -14,6 +14,7 @@ LOGGER = logging.getLogger(__name__)
 import aria2p
 import asyncio
 import os
+import time
 from tobrot.helper_funcs.upload_to_tg import upload_to_tg, upload_to_gdrive
 from tobrot.helper_funcs.create_compressed_archive import create_archive, unzip_me, unrar_me, untar_me
 from tobrot.helper_funcs.extract_link_from_message import extract_link
@@ -49,7 +50,7 @@ async def aria_start():
     aria2_daemon_start_cmd.append("--rpc-listen-all=false")
     aria2_daemon_start_cmd.append(f"--rpc-listen-port={ARIA_TWO_STARTED_PORT}")
     aria2_daemon_start_cmd.append("--rpc-max-request-size=1024M")
-    aria2_daemon_start_cmd.append("--seed-ratio=0.0")
+    #aria2_daemon_start_cmd.append("--seed-ratio=0.0")
     aria2_daemon_start_cmd.append("--seed-time=1")
     aria2_daemon_start_cmd.append("--max-overall-upload-limit=1K")
     aria2_daemon_start_cmd.append("--split=10")
@@ -73,6 +74,7 @@ async def aria_start():
         )
     )
     return aria2
+
 
 
 def add_magnet(aria_instance, magnetic_link, c_file_name):
@@ -126,7 +128,7 @@ def add_url(aria_instance, text_url, c_file_name):
             options=options
         )
     except Exception as e:
-        return False, "**FAILED** \n" + str(e) + " \nPlease do not send SLOW links. Read /help"
+        return False, "**FAILED** \n" + str(e) + " \nPlease do not send SLOW links."
     else:
         return True, "" + download.gid + ""
 
@@ -201,10 +203,30 @@ async def call_apropriate_function(
         if check_ify_file is not None:
             to_upload_file = check_ify_file
     #
-    if to_upload_file:
-        if CUSTOM_FILE_NAME:
-            os.rename(to_upload_file, f"{CUSTOM_FILE_NAME}{to_upload_file}")
-            to_upload_file = f"{CUSTOM_FILE_NAME}{to_upload_file}"
+   if to_upload_file:
+    #    if CUSTOM_FILE_NAME:
+    #        os.rename(to_upload_file, f"{CUSTOM_FILE_NAME}{to_upload_file}")
+     #       to_upload_file = f"{CUSTOM_FILE_NAME}{to_upload_file}"
+    #    else:
+     #       to_upload_file = to_upload_file
+
+    #if cstom_file_name:
+     #   os.rename(to_upload_file, cstom_file_name)
+      #  to_upload_file = cstom_file_name
+    #else:
+     #to_upload_file = to_upload_file
+if CUSTOM_FILE_NAME:
+            if os.path.isfile(to_upload_file):
+                os.rename(to_upload_file, f"{CUSTOM_FILE_NAME}{to_upload_file}")
+                to_upload_file = f"{CUSTOM_FILE_NAME}{to_upload_file}"
+            else:
+                for root, dirs, files in os.walk(to_upload_file):
+                    LOGGER.info(files)
+                    for org in files:
+                        p_name = f"{root}/{org}"
+                        n_name = f"{root}/{CUSTOM_FILE_NAME}{org}"
+                        os.rename(p_name, n_name)
+                to_upload_file = to_upload_file
         else:
             to_upload_file = to_upload_file
 
@@ -212,8 +234,8 @@ async def call_apropriate_function(
         os.rename(to_upload_file, cstom_file_name)
         to_upload_file = cstom_file_name
     else:
-        to_upload_file = to_upload_file
-    #
+        to_upload_file = to_upload_file    
+#
     response = {}
     LOGGER.info(response)
     user_id = user_message.from_user.id
@@ -240,7 +262,7 @@ async def call_apropriate_function(
             message_to_send += "</a>"
             message_to_send += "\n"
         if message_to_send != "":
-            mention_req_user = f"<a href='tg://user?id={user_id}'>Your Requested Files</a>\n\n@AbirHasan2005 Please Review them!\n"
+            mention_req_user = f"<a href='tg://user?id={user_id}'>Your Requested Files</a>\n\n"
             message_to_send = mention_req_user + message_to_send
             message_to_send = message_to_send + "\n" + "#uploads"
         else:
@@ -296,7 +318,7 @@ async def call_apropriate_function_g(
                 None
             )
         else:
-            return False, "Ops, \nCan't get metadata \n@AbirHasan2005 Please review them! \n#stopped"
+            return False, "Ops! #stopped, \nCan't get metadata \n\n #MetaDataError"
     await asyncio.sleep(1)
     file = aria_instance.get_download(err_message)
     to_upload_file = file.name
@@ -329,6 +351,16 @@ async def call_apropriate_function_g(
         if CUSTOM_FILE_NAME:
             os.rename(to_upload_file, f"{CUSTOM_FILE_NAME}{to_upload_file}")
             to_upload_file = f"{CUSTOM_FILE_NAME}{to_upload_file}"
+		#new
+		else:
+                for root, dirs, files in os.walk(to_upload_file):
+                    LOGGER.info(files)
+                    for org in files:
+                        p_name = f"{root}/{org}"
+                        n_name = f"{root}/{CUSTOM_FILE_NAME}{org}"
+                        os.rename(p_name, n_name)
+                to_upload_file = to_upload_file
+		#
         else:
             to_upload_file = to_upload_file
 
@@ -381,6 +413,7 @@ async def call_apropriate_function_t(
         to_upload_file,
         sent_message_to_update_tg_p
     )
+#
     LOGGER.info(final_response)
     #if to_upload_file:
         #if CUSTOM_FILE_NAME:
@@ -486,6 +519,7 @@ async def check_progress_for_dl(aria2, gid, event, previous_message):
         pass
     except MessageNotModified:
         pass
+#
     except RecursionError:
         file.remove(force=True)
         await event.edit(
