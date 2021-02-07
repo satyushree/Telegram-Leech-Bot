@@ -26,10 +26,11 @@ from tobrot import (
     EDIT_SLEEP_TIME_OUT,
     CUSTOM_FILE_NAME
 )
-from pyrogram import (
-	InlineKeyboardButton,
-	InlineKeyboardMarkup,
-	Message
+from pyrogram.errors import MessageNotModified, FloodWait
+from pyrogram.types import (
+    InlineKeyboardButton,
+    InlineKeyboardMarkup,
+    Message
 )
 
 async def aria_start():
