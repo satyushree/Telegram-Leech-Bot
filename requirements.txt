@@ -1,8 +1,8 @@
 aiohttp
-aria2p
+aria2p==0.9.1
 hachoir
 Pillow
 pyrogram
 tgcrypto
-git+https://github.com/gautamajay52/youtube-dl
+youtube_dl==2020.11.12
 hurry.filesize
