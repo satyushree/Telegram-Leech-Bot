@@ -77,4 +77,32 @@ async def down_load_media_f(client, message):
             LOGGER.info(gaut_response)
     else:
         #await asyncio.sleep(4)
-        await mess_age.edit_text("Reply to a Telegram Media, to upload to @AbirHasan2005's Cloud Drive.")
+        await mess_age.edit_text("Reply to a Telegram Media, to upload to My Cloud Drive.")
+# next will be new
+async def download_tg(client, message):
+    user_id = message.from_user.id
+    LOGGER.info(user_id)
+    mess_age = await message.reply_text("...", quote=True)
+    if not os.path.isdir(DOWNLOAD_LOCATION):
+        os.makedirs(DOWNLOAD_LOCATION)
+    if message.reply_to_message is not None:
+        start_t = datetime.now()
+        download_location = "/app/"
+        c_time = time.time()
+        try:
+            the_real_download_location = await client.download_media(
+                message=message.reply_to_message,
+                file_name=download_location,
+                progress=progress_for_pyrogram_g,
+                progress_args=(
+                    "trying to download", mess_age, c_time
+                )
+            )
+        except Exception as g_e:
+            LOGGER.info(g_e)
+        end_t = datetime.now()
+        ms = (end_t - start_t).seconds
+        LOGGER.info(the_real_download_location)
+        await asyncio.sleep(5)
+        await mess_age.edit_text(f"Downloaded to <code>{the_real_download_location}</code> in <u>{ms}</u> seconds")
+    return the_real_download_location
