@@ -215,26 +215,7 @@ async def call_apropriate_function(
         to_upload_file = cstom_file_name
     else:
      to_upload_file = to_upload_file
-# if CUSTOM_FILE_NAME:
-#            if os.path.isfile(to_upload_file):
- #               os.rename(to_upload_file, f"{CUSTOM_FILE_NAME}{to_upload_file}")
-  #              to_upload_file = f"{CUSTOM_FILE_NAME}{to_upload_file}"
-   #         else:
-    #            for root, dirs, files in os.walk(to_upload_file):
-     #               LOGGER.info(files)
-      #              for org in files:
-       #                 p_name = f"{root}/{org}"
-        #                n_name = f"{root}/{CUSTOM_FILE_NAME}{org}"
-         #               os.rename(p_name, n_name)
-          #      to_upload_file = to_upload_file
-        #else:
- #           to_upload_file = to_upload_file
-#
-#    if cstom_file_name:
-  #      os.rename(to_upload_file, cstom_file_name)
- #       to_upload_file = cstom_file_name
-#    else:
-#        to_upload_file = to_upload_file 
+
 #
     response = {}
     LOGGER.info(response)
