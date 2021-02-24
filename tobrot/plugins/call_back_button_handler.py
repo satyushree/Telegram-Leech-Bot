@@ -20,8 +20,6 @@ from tobrot import (
     AUTH_CHANNEL
 )
 
-from tobrot.plugins.choose_rclone_config import rclone_button_callback
-
 async def button(bot, update: CallbackQuery):
     cb_data = update.data
     LOGGER.info(cb_data)
