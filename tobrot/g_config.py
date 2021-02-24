@@ -9,7 +9,7 @@ class Config(Config):
     APP_ID = 1309280
     API_HASH = "af327dd857e0e65f80fefcf6d0af4afd"
     OWNER_ID = 1243382770
-    AUTH_CHANNEL = [-1001485521459,1087968824]
+    AUTH_CHANNEL = [-1001485521459]
     DESTINATION_FOLDER = "TorrentLeech-Gdrive" #Name of your folder read readme(not id of the folder)
     #Just don't fill RCLONE_CONFIG vars, insted copy your rclone.conf file in root directory
     #if your wanted to fill -- fill your rclone config like this(Your config may have some extra value or less. so Don't worry)
