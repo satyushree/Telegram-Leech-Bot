@@ -6,7 +6,7 @@ class Config(Config):
     TG_BOT_TOKEN= "1516163225:AAFNvtqWKHJcTYaGEtIziEw2DQpMdmvXw5A" #imp
     APP_ID = 1309280 #imp
     API_HASH = "af327dd857e0e65f80fefcf6d0af4afd" #imp
-    AUTH_CHANNEL = [-1001485521459,1087968824,1243382770] #imp replace your_id with your id from telegram or delete
+    AUTH_CHANNEL = [-1001485521459,1087968824] #imp replace your_id with your id from telegram or delete
     INDEX_LINK = "https://shree.satyu.workers.dev"
     GLEECH_COMMAND = "gleech@TLeechr_Bot"
     YTDL_COMMAND = "ytdl@TLeechr_Bot"
