@@ -34,15 +34,13 @@ from tobrot import (
     CLEAR_THUMBNAIL,
     PYTDL_COMMAND_G,
     LOG_COMMAND,
-    CLONE_COMMAND_G,
-    RENEWME_COMMAND,
-    UPLOAD_COMMAND
+    CLONE_COMMAND_G
 )
 
 from pyrogram import Client, filters
 from pyrogram.handlers import MessageHandler, CallbackQueryHandler
 
-from tobrot.plugins.new_join_fn import new_join_f, help_message_f
+from tobrot.plugins.new_join_fn import new_join_f, help_message_f, rename_message_f
 from tobrot.plugins.incoming_message_fn import incoming_message_f, incoming_youtube_dl_f, incoming_purge_message_f, incoming_gdrive_message_f, g_yt_playlist, g_clonee
 from tobrot.plugins.rclone_size import check_size_g, g_clearme
 from tobrot.plugins.status_message_fn import (
@@ -58,8 +56,6 @@ from tobrot.plugins.custom_thumbnail import (
     clear_thumb_nail
 )
 from tobrot.helper_funcs.download import down_load_media_f
-
-from tobrot.plugins.choose_rclone_config import rclone_command_f
 
 
 if __name__ == "__main__" :
@@ -113,7 +109,7 @@ if __name__ == "__main__" :
     #
     incoming_g_clear_handler = MessageHandler(
         g_clearme,
-        filters=filters.command([f"{RENEWME_COMMAND}"]) & filters.chat(chats=AUTH_CHANNEL)
+        filters=filters.command(["renewme"]) & filters.chat(chats=AUTH_CHANNEL)
     )
     app.add_handler(incoming_g_clear_handler)
     #
@@ -156,14 +152,14 @@ if __name__ == "__main__" :
     '''
     #
     rename_message_handler = MessageHandler(
-        rename_tg_file,
+        rename_message_f,
         filters=filters.command(["rename"]) & filters.chat(chats=AUTH_CHANNEL)
     )
     app.add_handler(rename_message_handler)
     #
     upload_document_handler = MessageHandler(
         upload_document_f,
-        filters=filters.command([f"{UPLOAD_COMMAND}"]) & filters.chat(chats=AUTH_CHANNEL)
+        filters=filters.command(["upload"]) & filters.chat(chats=AUTH_CHANNEL)
     )
     app.add_handler(upload_document_handler)
     #
@@ -207,11 +203,5 @@ if __name__ == "__main__" :
         filters=filters.command([f"{CLEAR_THUMBNAIL}"]) & filters.chat(chats=AUTH_CHANNEL)
     )
     app.add_handler(clear_thumb_nail_handler)
-    #
-    rclone_config_handler = MessageHandler(
-        rclone_command_f,
-        filters=filters.command(["rclone"])
-    )
-    app.add_handler(rclone_config_handler)
     #
     app.run()
