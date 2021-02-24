@@ -151,11 +151,11 @@ if __name__ == "__main__" :
     app.add_handler(eval_message_handler)
     '''
     #
-    rename_message_handler = MessageHandler(
+    """rename_message_handler = MessageHandler(
         rename_message_f,
         filters=filters.command(["rename"]) & filters.chat(chats=AUTH_CHANNEL)
     )
-    app.add_handler(rename_message_handler)
+    app.add_handler(rename_message_handler)"""
     #
     upload_document_handler = MessageHandler(
         upload_document_f,
