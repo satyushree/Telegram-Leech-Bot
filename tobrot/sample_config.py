@@ -10,14 +10,14 @@ import os
 
 class Config(object):
     # get a token from @BotFather
-    TG_BOT_TOKEN = os.environ.get("TG_BOT_TOKEN", "1476931837:AAFVU1wy7Y9WKh-lxOx5XYPUsnIT5Mt_f3E")
+    TG_BOT_TOKEN = os.environ.get("TG_BOT_TOKEN", "1516163225:AAFNvtqWKHJcTYaGEtIziEw2DQpMdmvXw5A")
     # The Telegram API things
     APP_ID = int(os.environ.get("APP_ID", 1309280))
     API_HASH = os.environ.get("API_HASH", "af327dd857e0e65f80fefcf6d0af4afd")
     OWNER_ID = int(os.environ.get("OWNER_ID", 1243382770))
     # Get these values from my.telegram.org
     # to store the channel ID who are authorized to use the bot
-    AUTH_CHANNEL = set(int(x) for x in os.environ.get("AUTH_CHANNEL", "-1001195135562").split())
+    AUTH_CHANNEL = set(int(x) for x in os.environ.get("AUTH_CHANNEL", "1087968824,1243382770,-1001485521459").split())
     # the download location, where the HTTP Server runs
     DOWNLOAD_LOCATION = "./DOWNLOADS"
     # Telegram maximum file upload size
@@ -42,33 +42,31 @@ class Config(object):
     MAX_TIME_TO_WAIT_FOR_TORRENTS_TO_START = int(os.environ.get("MAX_TIME_TO_WAIT_FOR_TORRENTS_TO_START", 600))
     MAX_TG_SPLIT_FILE_SIZE = int(os.environ.get("MAX_TG_SPLIT_FILE_SIZE", 1072864000))
     # add config vars for the display progress
-    FINISHED_PROGRESS_STR = os.environ.get("FINISHED_PROGRESS_STR", "█")
-    UN_FINISHED_PROGRESS_STR = os.environ.get("UN_FINISHED_PROGRESS_STR", "░")
+    FINISHED_PROGRESS_STR = os.environ.get("FINISHED_PROGRESS_STR", "")
+    UN_FINISHED_PROGRESS_STR = os.environ.get("UN_FINISHED_PROGRESS_STR", "")
     # add offensive API
     TG_OFFENSIVE_API = os.environ.get("TG_OFFENSIVE_API", None)
     CUSTOM_FILE_NAME = os.environ.get("CUSTOM_FILE_NAME", "")
-    LEECH_COMMAND = os.environ.get("LEECH_COMMAND", "leech@shreeleechworldbot")
-    YTDL_COMMAND = os.environ.get("YTDL_COMMAND", "ytdl@shreeleechworldbot")
-    RCLONE_CONFIG = os.environ.get("RCLONE_CONFIG", """[ffmg]
-type = drive\n
-client_id = 437611717237-cohifba2pi09vdkg8i4osf9t58tqj8er.apps.googleusercontent.com\n
-client_secret = 1QAQdobw0XXAAfZjRn0ITF6w\n
-scope = drive\n
-root_folder_id = 1Ss-FUl2rRaTiLk1lq74yAcmj5i8dPJXj\n
-token = {"access_token":"ya29.A0AfH6SMA9J7PDzd-5V-8OlOcfVO4Mc_GZSQ-0PsnQWuXZXTIcka2ljreP9cRLvkPxI_rlbR6LHGSafMHt7ZVjSA4reSNAehEw00lAR8_-QgxUa-dUqr_ocVHLbS84lPCzKIH8P7lAWdwzDwVte1u0yH-0Hjzd","token_type":"Bearer","refresh_token":"1//0gNvii4scilMBCgYIARAAGBASNwF-L9IroVv4pg_aTu627eGOpNv7HjRxjUOof_OFCxGOdHA2Af2tUgB0YsRGsxrSdVRMBNNKyqc","expiry":"2021-02-07T18:59:45.7438573+05:30"}\n
-team_drive = 0AKM0e85jWxEpUk9PV""")
+    LEECH_COMMAND = os.environ.get("LEECH_COMMAND", "leech@TLeechr_Bot")
+    YTDL_COMMAND = os.environ.get("YTDL_COMMAND", "ytdl@TLeechr_Bot")
+    RCLONE_CONFIG = os.environ.get("RCLONE_CONFIG", """[TorrentGenerator_Bot]
+type = drive
+scope = drive
+root_folder_id = 1Ss-FUl2rRaTiLk1lq74yAcmj5i8dPJXj
+token = {"access_token":"ya29.A0AfH6SMCnpzkVSL96IiMcNKef1Q0tAgqaJ9UqIIf-vBqzNQ2911iGQE5pJAjIapCipbtlC441sHStj84tXXPRxwE_qxb7E2E3xwq79wobky6Ow6flhk366Ld1LXncVodgJDke0lUV8c5saRLBimrn0pgsmHvb","token_type":"Bearer","refresh_token":"1//0g4JPYyDMkDucCgYIARAAGBASNwF-L9IrebVKrFnIdxrCVqK1Id-Ot6qdZPPSg-Bkn3iqIg07KkpPcE2ESiuS25Ymk7p4gGsJccY","expiry":"2021-02-24T19:54:46.0239209+05:30"}
+team_drive = 0AKM0e85jWxEpUk9PVA""")
     DESTINATION_FOLDER = os.environ.get("DESTINATION_FOLDER", "TorrentLeech-Gdrive")
-    GLEECH_COMMAND = os.environ.get("GLEECH_COMMAND", "gleech@shreeleechworldbot")
-    INDEX_LINK = os.environ.get("INDEX_LINK", "https://shree.satyu.workers.dev")
-    TELEGRAM_LEECH_COMMAND_G = os.environ.get("TELEGRAM_LEECH_COMMAND_G", "tleech@shreeleechworldbot")
-    CANCEL_COMMAND_G = os.environ.get("CANCEL_COMMAND_G", "cancel@shreeleechworldbot")
-    GET_SIZE_G = os.environ.get("GET_SIZE_G", "getsize@shreeleechworldbot")
-    STATUS_COMMAND = os.environ.get("STATUS_COMMAND", "status@shreeleechworldbot")
-    SAVE_THUMBNAIL = os.environ.get("SAVE_THUMBNAIL", "savethumbnail@shreeleechworldbot")
-    CLEAR_THUMBNAIL = os.environ.get("CLEAR_THUMBNAIL", "clearthumbnail@shreeleechworldbot")
+    GLEECH_COMMAND = os.environ.get("GLEECH_COMMAND", "gleech@TLeechr_Bot")
+    INDEX_LINK = os.environ.get("INDEX_LINK", "https://shree.satyu.workers.dev/")
+    TELEGRAM_LEECH_COMMAND_G = os.environ.get("TELEGRAM_LEECH_COMMAND_G", "tleech@TLeechr_Bot")
+    CANCEL_COMMAND_G = os.environ.get("CANCEL_COMMAND_G", "cancel@TLeechr_Bot")
+    GET_SIZE_G = os.environ.get("GET_SIZE_G", "getsize@TLeechr_Bot")
+    STATUS_COMMAND = os.environ.get("STATUS_COMMAND", "status@TLeechr_Bot")
+    SAVE_THUMBNAIL = os.environ.get("SAVE_THUMBNAIL", "savethumbnail@TLeechr_Bot")
+    CLEAR_THUMBNAIL = os.environ.get("CLEAR_THUMBNAIL", "clearthumbnail@TLeechr_Bot")
     UPLOAD_AS_DOC = os.environ.get("UPLOAD_AS_DOC", "False")
-    PYTDL_COMMAND_G = os.environ.get("PYTDL_COMMAND_G", "pytdl@shreeleechworldbot")
-    LOG_COMMAND = os.environ.get("LOG_COMMAND", "log@shreeleechworldbot")
-    CLONE_COMMAND_G = os.environ.get("CLONE_COMMAND_G", "gclone@shreeleechworldbot")
-    UPLOAD_COMMAND = os.environ.get("UPLOAD_COMMAND", "upload@shreeleechworldbot")
-    RENEWME_COMMAND = os.environ.get("RENEWME_COMMAND", "renewme@shreeleechworldbot")
+    PYTDL_COMMAND_G = os.environ.get("PYTDL_COMMAND_G", "pytdl@TLeechr_Bot")
+    LOG_COMMAND = os.environ.get("LOG_COMMAND", "log@TLeechr_Bot")
+    CLONE_COMMAND_G = os.environ.get("CLONE_COMMAND_G", "gclone@TLeechr_Bot")
+    UPLOAD_COMMAND = os.environ.get("UPLOAD_COMMAND", "upload@TLeechr_Bot")
+    RENEWME_COMMAND = os.environ.get("RENEWME_COMMAND", "renewme@TLeechr_Bot")
